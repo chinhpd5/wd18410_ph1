@@ -84,7 +84,7 @@
 
 
 
-    $array2 =[
+    $array3 =[
         [
             "name" => "Phí Đức Chính",
             "age" => 20,
@@ -114,6 +114,19 @@
             "result" => [4,6,8.5,10]
         ]
     ];
+
+    foreach ($array3 as $value){
+        //print_r($value);
+
+        echo "Họ và tên: ".$value["name"]."<br>";
+        // $tong =0;
+        // foreach($value["result"] as $number){
+        //     $tong += $number;
+        // }
+        $tong = array_sum($value["result"]);
+
+        echo "Điểm trung bình cộng: ".$tong /count($value["result"])."<br>";
+    }
 
 
 

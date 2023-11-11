@@ -68,6 +68,7 @@
     $chuoi2 = "Đây là chuỗi 2: $b"; // có thể sử dụng biến
     echo $chuoi;
     echo $chuoi2;
+    
 
 
 

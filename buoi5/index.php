@@ -12,7 +12,7 @@
     echo htmlspecialchars($options);
 ?>
 
-<form action="date.php" method="post">
+<form action="index.php" method="post">
 
     <label for="">UserName</label>
     <input type="text" name="userName"><br>
@@ -25,6 +25,19 @@
     <select name="subject" id="">
         <?php echo $options; ?>
     </select><br>
+    <hr>
+    <label for="">Game</label> <br>
+    <input type="checkbox" name="game[]" value="lol" id="">Liên minh <br> 
+    <input type="checkbox" name="game[]" value="lq" id="" checked>Liên quân <br>
+    <input type="checkbox" name="game[]" value="ff" id="">Lửa chùa <br>
+
+    <hr>
+
+    <label for="">money</label><br>
+    <input type="radio" name="money" value="vnd" id="">VNĐ <br>
+    <input type="radio" name="money" value="usd" id="">USD <br>
+    <input type="radio" name="money" value="pound" id="">Bảng <br>
+    <input type="radio" name="money" value="euro" id="">Euro <br>
 
     <input type="submit" name="submit" value="Gửi">
 
@@ -42,6 +55,12 @@
 
         $subject = $_POST["subject"];
         echo $subject.'<br>';
+        echo "<pre>";
+        $game =$_POST["game"];
+        print_r($game);
+
+        $money =$_POST["money"];
+        echo $money;
     }
     
    

@@ -8,9 +8,8 @@
     $errHoVaten ='';
     $errKhoa = '';
     $errNgaySinh ='';
-    $isCheck = true;
 
-    
+    $isCheck = true;
 
     if(isset($_POST["submit"])){
         //lấy thông tin người dùng nhập vào
@@ -18,10 +17,10 @@
         $khoa = trim($_POST["khoa"]);
         $ngaySinh = $_POST["ngaySinh"];
         $lopId = $_POST["lopId"];
-        // echo "<pre>";
+        //echo "<pre>";
         //in thông tin ra bên ngoài 
         //lưu ý có dấu []
-        // print_r([$hoVaTen,$khoa,$ngaySinh,$lopId]);
+        //print_r([$hoVaTen,$khoa,$ngaySinh,$lopId]);
 
         //kiểm tra dữ liệu
         if(empty($hoVaTen)){
@@ -35,6 +34,22 @@
         if(empty($ngaySinh)){
             $errNgaySinh ="Cần nhập ngày sinh";
             $isCheck = false;
+        }
+
+        if($isCheck){
+            //thêm dữ liệu vào database
+            $sql = "INSERT INTO sinhvien(hoVaTen,khoa,ngaySinh,lopId)
+                    VALUES ('$hoVaTen','$khoa','$ngaySinh',$lopId)";
+
+            //echo $sql;
+            $result = $conn->query($sql);
+            if($result){
+                // echo "Thêm thành công";
+                //chuyển sang index.php
+                header("Location: index.php");
+            }else{
+                echo "thêm thất bại";
+            }
         }
 
 
@@ -54,7 +69,7 @@
                 $options .='<option '.($item["id"] == $lopId ? 'selected': '').' value="'.$item["id"].'">'.$item["tenLop"].'</option>';
             }
         }
-        echo htmlspecialchars($options);
+        //echo htmlspecialchars($options);
     }
 ?>
 

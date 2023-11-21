@@ -1,5 +1,17 @@
 <?php
     include_once('connect.php');
+
+    $hoVaTen ='';
+    $ngaySinh ='';
+    $khoa ='';
+    $lopId ='';
+
+    $errHoVaten ='';
+    $errKhoa = '';
+    $errNgaySinh ='';
+
+    $isCheck = true;
+
     if(isset($_GET["id"])){
         $id = $_GET["id"];
         if($id){
@@ -8,13 +20,48 @@
             if($result){
                 $sinhVien = $result->fetch(PDO::FETCH_ASSOC);
                 if($sinhVien){
-                    echo "<pre>";
-                    print_r($sinhVien);
+                    // echo "<pre>";
+                    // print_r($sinhVien);
+
+                    $hoVaTen = $sinhVien["hoVaTen"];
+                    $khoa = $sinhVien["khoa"];
+                    $ngaySinh = $sinhVien["ngaySinh"];
+                    $lopId = $sinhVien["lopId"];
                 }
             }
         }
 
 
+    }
+
+    if(isset($_POST["submit"])){
+        $hoVaTen =$_POST["hoVaTen"];
+        $khoa = $_POST["khoa"];
+        $ngaySinh = $_POST["ngaySinh"];
+        $lopId = $_POST["lopId"];
+        
+        echo "<pre>";
+        print_r([$id,$hoVaTen,$khoa,$ngaySinh,$lopId]);
+        echo "</pre>";
+
+    }
+
+    // lấy danh sách lớp và để vào trong thẻ select
+    $sql = "SELECT * FROM lop";
+    $result = $conn->query($sql);
+    $options ='';
+    if($result){
+        $listLop = $result->fetchAll(PDO::FETCH_ASSOC);
+        // echo "<pre>";
+        // print_r($listLop);
+        if($listLop){
+            foreach($listLop as $item){
+                // print_r($item);
+                //kiểm tra id của thẻ lớp với id mà người lựa chọn trước đó
+                $options .='<option '.($item["id"] == $lopId ? 'selected': '').' value="'.$item["id"].'">'.$item["tenLop"].'</option>';
+            }
+        }
+        //echo htmlspecialchars($options);
     }
 
 ?>

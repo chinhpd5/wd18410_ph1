@@ -14,15 +14,16 @@
     
 
     if(isset($_POST["submit"])){
+        // echo "<pre>";
+        // print_r($_POST);
         $tenLoaiXe= trim($_POST["tenLoaiXe"]);
         $xuatXu= trim($_POST["xuatXu"]);
         $idDanhMuc = $_POST["idDanhMuc"];
         $mauSac= $_POST["mauSac"];
         $image = $_FILES["hinhAnh"];
         
-        echo "<pre>";
-        print_r([$tenLoaiXe, $xuatXu,$idDanhMuc,$mauSac,$image]);
-
+        // print_r([$tenLoaiXe, $xuatXu,$idDanhMuc,$mauSac,$image]);
+        // die();
         if($tenLoaiXe == ''){
             $isCheck =false;
             $errTenLoaiXe ="Cần nhập tên xe";
@@ -94,7 +95,7 @@
         if($result){
             $listDM = $result->fetchAll(PDO::FETCH_ASSOC);
             if($listDM){
-                // print_r($listDM);
+                print_r($listDM);
                 foreach($listDM as $value){
                     $options .= ' <option value="'.$value["id"].'">'.$value["tenHangXe"].'</option>';
                 }

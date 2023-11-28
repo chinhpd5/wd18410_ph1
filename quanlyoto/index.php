@@ -19,7 +19,7 @@
             <td>Việt Nam</td>
             <td>Xe con</td>
             <td><input type="color" value="#fff"></td>
-            <td></td>
+            <td><img src="" alt=""></td>
         </tr>
     </tbody>
 </table>

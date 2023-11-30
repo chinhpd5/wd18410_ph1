@@ -1,6 +1,13 @@
 <?php
-
+    session_start();
     include_once("./connect.php");
+
+    if(isset($_SESSION["username"])){
+        echo "Xin chào ".$_SESSION["username"];
+        echo '<button><a href="logout.php" >Đăng xuất</a></button>';
+    }else{
+        echo '<button><a href="login.php" >Đăng nhập</a></button>';
+    }
 
     $sql = "SELECT sinhvien.id, hoVaTen,khoa,ngaySinh,lopId, lop.tenLop
             FROM sinhvien INNER JOIN lop ON sinhvien.lopId = lop.id";
@@ -39,7 +46,7 @@
 ?>
 
 
-
+<br>
 <button><a href="add.php" style ="text-decoration: none">Thêm sinh viên</a></button>
 <table border>
     <thead>

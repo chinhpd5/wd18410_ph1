@@ -1,18 +1,18 @@
 <?php
+    session_start();
+
     if(isset($_POST["submit"])){
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        // print_r([$username,$password]);
-        if($username =="admin" && $password =="123456"){
-            // echo "Đăng nhập thành công";
-            // Hàm tạo mới 1 cookie
-            setcookie("username",$username,time() + 60*60*24);
-            header("Location: index.php");
-            // echo $_COOKIE["username"];
+        if($username =="admin" && $password == "123456"){
+            //khai báo 1 session
+            $_SESSION["username"] = $username;
+            header('Location: index.php');
         }else{
             echo "Sai tài khoản hoặc mật khẩu";
         }
+
     }
 
 ?>
